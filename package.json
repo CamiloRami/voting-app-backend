@@ -1,0 +1,19 @@
+{
+  "name": "voting-app-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.24.0",
+    "standard": "^17.1.2"
+  }
+}
