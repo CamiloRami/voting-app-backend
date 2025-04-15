@@ -24,12 +24,14 @@ class VoteController {
     if (error) {
       return res.status(400).json({ error: 'Invalid data' })
     }
-
     try {
       const voteId = await this.voteModel.createVote({ voterId, candidateId })
       return res.status(201).json({ voteId })
     } catch (err) {
       console.error('Error creating vote:', err)
+      if (err.message === 'Voter has already voted') {
+        return res.status(400).json({ error: 'Voter has already voted' })
+      }
       return res.status(500).json({ error: 'Internal server error' })
     }
   }

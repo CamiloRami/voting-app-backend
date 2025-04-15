@@ -33,6 +33,7 @@ CREATE TABLE votes (
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (vote_id),
     INDEX idx_vote_candidate (candidate_id),
+    UNIQUE INDEX idx_vote_voter (voter_id),
     FOREIGN KEY (voter_id) REFERENCES voters(voter_id) ON DELETE RESTRICT,
     FOREIGN KEY (candidate_id) REFERENCES voters(voter_id) ON DELETE RESTRICT
 );
@@ -59,9 +60,6 @@ INSERT INTO voters (document, name, lastName, date_of_birth, is_candidate) VALUE
 
 -- VOTES (8)
 INSERT INTO votes (voter_id, candidate_id) VALUES
-(1, 9),
-(2, 10), 
-(3, 9),
 (4, 9),
 (5, 10),
 (6, 9),
