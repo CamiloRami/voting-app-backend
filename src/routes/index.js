@@ -1,9 +1,12 @@
 const express = require('express')
+const createVoterRouter = require('./voters')
 
-const router = express.Router()
+function createRouter ({ voterModel }) {
+  const router = express.Router()
+  const voterRouter = createVoterRouter({ voterModel })
 
-router.get('/status', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date() })
-})
+  router.use('/voters', voterRouter)
 
-module.exports = router
+  return router
+}
+module.exports = createRouter

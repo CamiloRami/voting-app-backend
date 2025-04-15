@@ -1,14 +1,15 @@
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
-const routes = require('./routes')
+const createRouter = require('./routes')
+const config = require('./config')
+const VoterModel = require('./models/mysql/voter')
 
 require('dotenv').config()
-
+const { port, whitelist } = config
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = port
 
-const whitelist = ['http://localhost:3000']
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
@@ -18,13 +19,13 @@ const corsOptions = {
     }
   }
 }
-
+// Middlewares
 app.use(cors(corsOptions))
 app.use(helmet())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use('/api', routes)
+app.use('/api/v1', createRouter({ voterModel: VoterModel }))
 
 app.get('/', (req, res) => {
   res.json({ message: 'Voting API' })
