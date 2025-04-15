@@ -5,6 +5,7 @@ const createRouter = require('./routes')
 const config = require('./config')
 const VoterModel = require('./models/mysql/voter')
 const CandidateModel = require('./models/mysql/candidate')
+const VoteModel = require('./models/mysql/vote')
 
 require('dotenv').config()
 const { port, whitelist } = config
@@ -28,7 +29,8 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use('/api/v1', createRouter({
   voterModel: VoterModel,
-  candidateModel: CandidateModel
+  candidateModel: CandidateModel,
+  voteModel: VoteModel
 }))
 
 app.get('/', (req, res) => {
