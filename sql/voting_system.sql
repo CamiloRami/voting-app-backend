@@ -20,6 +20,9 @@ CREATE TABLE voters (
     name VARCHAR(255) NOT NULL,
     lastName VARCHAR(255) NOT NULL,
     date_of_birth DATE NOT NULL,
+    direction VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    sex ENUM('M', 'F') NOT NULL,
     is_candidate TINYINT NOT NULL DEFAULT 0,
     PRIMARY KEY (voter_id),
     UNIQUE INDEX idx_voter_email (document)
@@ -43,20 +46,21 @@ INSERT INTO admins (name, lastName, email, password) VALUES
 ('Admin', 'System', 'admin@votingsystem.com', '$2y$10$8sA7AMhNvSqevrnT.lx8puQe.6vXQYo5A3vx1YpdYEkW3vF/vGX/O');
 
 -- VOTERS (8)
-INSERT INTO voters (document, name, lastName, date_of_birth, is_candidate) VALUES
-('1111111', 'Jon', 'Nieves', '1985-05-12', 0),
-('2222222', 'María', 'Torres', '1990-09-23', 0),
-('3333333', 'Carlos', 'Rodríguez', '1978-03-18', 0),
-('4444444', 'Ana', 'Martínez', '1992-11-05', 0),
-('5555555', 'Pedro', 'Sánchez', '1983-07-30', 0),
-('6666666', 'Laura', 'González', '1988-12-15', 0),
-('7777777', 'Miguel', 'Fernández', '1975-01-20', 0),
-('8888888', 'Sofía', 'Torres', '1995-06-08', 0);
+INSERT INTO voters (document, name, lastName, date_of_birth, direction, phone, sex, is_candidate) VALUES
+('1234567', 'Juan', 'Pérez', '1990-01-15', 'Calle 1', '555-1234', 'M', 0),
+('2345678', 'María', 'Gómez', '1985-02-20', 'Calle 2', '555-5678', 'F', 0),
+('3456789', 'Carlos', 'López', '1992-03-30', 'Calle 3', '555-8765', 'M', 0),
+('4567890', 'Ana', 'Martínez', '1988-04-10', 'Calle 4', '555-4321', 'F', 0),
+('5678901', 'Luis', 'Hernández', '1995-05-05', 'Calle 5', '555-1357', 'M', 0),
+('6789012', 'Sofía', 'Díaz', '1993-06-15', 'Calle 6', '555-2468', 'F', 0),
+('7890123', 'Javier', 'Torres', '1987-07-20', 'Calle 7', '555-3579', 'M', 0),
+('8901234', 'Lucía', 'Ramírez', '1991-08-25', 'Calle 8', '555-4680','F' , 0);
+
 
 -- CANDIDATES (2)
-INSERT INTO voters (document, name, lastName, date_of_birth, is_candidate) VALUES
-('9999999', 'Elena', 'Ramírez', '1980-04-25', 1),
-('1010101', 'David', 'Moreno', '1982-08-10', 1);
+INSERT INTO voters (document, name, lastName, date_of_birth, direction, phone, sex, is_candidate) VALUES
+('1111111', 'Jon', 'Snow', '1980-09-30', 'The Wall', '555-1111', 'M', 1),
+('2222222', 'Laura', 'Fernández', '1986-10-15', 'Calle 10', '555-2222', 'F', 1);
 
 -- VOTES (8)
 INSERT INTO votes (voter_id, candidate_id) VALUES
