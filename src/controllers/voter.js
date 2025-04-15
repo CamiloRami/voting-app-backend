@@ -20,7 +20,20 @@ class VoterController {
       }
       return res.json(voter)
     } catch (err) {
-      // console.error('Error fetching voter:', err)
+      console.error('Error fetching voter:', err)
+      return res.status(500).json({ error: 'Internal server error' })
+    }
+  }
+
+  async getVoters (req, res) {
+    try {
+      const voters = await this.voterModel.getVoters()
+      if (!voters) {
+        return res.status(404).json({ error: 'No voters found' })
+      }
+      return res.json(voters)
+    } catch (err) {
+      console.error('Error fetching voters:', err)
       return res.status(500).json({ error: 'Internal server error' })
     }
   }
