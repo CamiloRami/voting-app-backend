@@ -4,6 +4,7 @@ const helmet = require('helmet')
 const createRouter = require('./routes')
 const config = require('./config')
 const VoterModel = require('./models/mysql/voter')
+const CandidateModel = require('./models/mysql/candidate')
 
 require('dotenv').config()
 const { port, whitelist } = config
@@ -25,7 +26,10 @@ app.use(helmet())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use('/api/v1', createRouter({ voterModel: VoterModel }))
+app.use('/api/v1', createRouter({
+  voterModel: VoterModel,
+  candidateModel: CandidateModel
+}))
 
 app.get('/', (req, res) => {
   res.json({ message: 'Voting API' })
