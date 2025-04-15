@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
+    "test-db": "node src/test-db.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -16,7 +17,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "helmet": "^8.1.0"
+    "helmet": "^8.1.0",
+    "joi": "^17.13.3",
+    "mysql2": "^3.14.0"
   },
   "devDependencies": {
     "eslint": "^9.24.0",
