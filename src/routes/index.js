@@ -3,6 +3,7 @@ const createVoterRouter = require('./voters')
 const createCandidateRouter = require('./candidates')
 const createVoteRouter = require('./votes')
 const createAuthRouter = require('./auth')
+const authMiddleware = require('../middlewares/auth')
 
 function createRouter ({ voterModel, candidateModel, voteModel, authService }) {
   const router = express.Router()
@@ -13,9 +14,10 @@ function createRouter ({ voterModel, candidateModel, voteModel, authService }) {
 
   router.use('/voters', voterRouter)
   router.use('/candidates', candidateRouter)
-  router.use('/votes', voteRouter)
+  router.use('/votes', authMiddleware, voteRouter)
   router.use('/auth', authRouter)
 
   return router
 }
+
 module.exports = createRouter

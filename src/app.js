@@ -8,7 +8,6 @@ const VoterModel = require('./models/mysql/voter')
 const CandidateModel = require('./models/mysql/candidate')
 const VoteModel = require('./models/mysql/vote')
 const AuthService = require('./services/auth')
-const authMiddleware = require('./middlewares/auth')
 
 require('dotenv').config()
 const { port, whitelist } = config
@@ -30,7 +29,6 @@ app.use(helmet())
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
-app.use(authMiddleware)
 
 app.use('/api/v1', createRouter({
   voterModel: VoterModel,
