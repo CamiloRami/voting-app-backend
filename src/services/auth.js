@@ -23,6 +23,16 @@ class AuthService {
       await connection.end()
     }
   }
+
+  static async logout (req, res) {
+    try {
+      res.clearCookie('token')
+      res.status(200).json({ message: 'Logged out successfully' })
+    } catch (error) {
+      console.error('Error logging out:', error)
+      res.status(500).json({ message: 'Internal server error' })
+    }
+  }
 }
 
 module.exports = AuthService
