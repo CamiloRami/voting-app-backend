@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS voting_system;
-CREATE DATABASE voting_system;
+CREATE DATABASE voting_system CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE voting_system;
 
 -- ADMINS
@@ -11,7 +11,7 @@ CREATE TABLE admins (
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (admin_id),
     UNIQUE INDEX idx_admin_email (email)
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- VOTERS
 CREATE TABLE voters (
@@ -26,7 +26,7 @@ CREATE TABLE voters (
     is_candidate TINYINT NOT NULL DEFAULT 0,
     PRIMARY KEY (voter_id),
     UNIQUE INDEX idx_voter_email (document)
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- VOTES
 CREATE TABLE votes (
@@ -56,7 +56,6 @@ INSERT INTO voters (document, name, lastName, date_of_birth, direction, phone, s
 ('6789012', 'Sofía', 'Díaz', '1993-06-15', 'Calle 6', '555-2468', 'F', 0),
 ('7890123', 'Javier', 'Torres', '1987-07-20', 'Calle 7', '555-3579', 'M', 0),
 ('8901234', 'Lucía', 'Ramírez', '1991-08-25', 'Calle 8', '555-4680','F' , 0);
-
 
 -- CANDIDATES (2)
 INSERT INTO voters (document, name, lastName, date_of_birth, direction, phone, sex, is_candidate) VALUES
