@@ -9,7 +9,11 @@ const config = {
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE
   },
-  whitelist: ['http://localhost:3000']
+  whitelist: ['http://localhost:3000'],
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.TOKEN_EXPIRATION || '1h'
+  }
 }
 
 module.exports = config

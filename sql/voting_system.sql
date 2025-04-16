@@ -43,7 +43,8 @@ CREATE TABLE votes (
 
 -- Admins
 INSERT INTO admins (name, lastName, email, password) VALUES 
-('Admin', 'System', 'admin@votingsystem.com', '$2y$10$8sA7AMhNvSqevrnT.lx8puQe.6vXQYo5A3vx1YpdYEkW3vF/vGX/O');
+('Admin', 'System', 'admin@votingsystem.com', '$2b$10$sMpFSHntBOyGLXm2.LP6/.CPKq0GQOgavqgReXrbeYnseDLcooctK');
+-- password: admin123
 
 -- VOTERS (8)
 INSERT INTO voters (document, name, lastName, date_of_birth, direction, phone, sex, is_candidate) VALUES
