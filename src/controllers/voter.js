@@ -8,7 +8,7 @@ class VoterController {
   async getVoter (req, res) {
     const { document } = req.params
     const { error } = getVoterSchema.validate({ document })
-    console.log('document', document)
+
     if (error) {
       return res.status(400).json({ error: 'Invalid document' })
     }

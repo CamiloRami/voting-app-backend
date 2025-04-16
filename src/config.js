@@ -9,7 +9,7 @@ const config = {
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE
   },
-  whitelist: ['http://localhost:3000'],
+  whitelist: ['http://localhost:3000', 'http://localhost:8080', 'http://127.0.0.1:3001'],
   jwt: {
     secret: process.env.JWT_SECRET,
     expiresIn: process.env.TOKEN_EXPIRATION || '1h'
