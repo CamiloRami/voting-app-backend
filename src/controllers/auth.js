@@ -29,7 +29,7 @@ class AuthController {
         email: admin.email
       }, token)
     } catch (error) {
-      res.status(401).json({ message: error.message })
+      res.status(401).json({ error: error.message })
     }
   }
 
@@ -37,7 +37,7 @@ class AuthController {
     try {
       await this.authService.logout(req, res)
     } catch (error) {
-      res.status(500).json({ message: error.message })
+      res.status(500).json({ error: error.message })
     }
   }
 
@@ -48,7 +48,7 @@ class AuthController {
       const result = await this.authService.changePassword({ email, oldPassword, newPassword })
       res.status(200).json(result)
     } catch (error) {
-      res.status(400).json({ message: error.message })
+      res.status(400).json({ error: error.message })
     }
   }
 }
