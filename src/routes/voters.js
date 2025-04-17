@@ -1,5 +1,6 @@
 const express = require('express')
 const VoterController = require('../controllers/voter')
+const authMiddleware = require('../middlewares/auth')
 
 function createVoterRouter ({ voterModel }) {
   const router = express.Router()
@@ -11,6 +12,10 @@ function createVoterRouter ({ voterModel }) {
 
   router.get('/:document', (req, res) => {
     return voterController.getVoter(req, res)
+  })
+
+  router.post('/', authMiddleware, (req, res) => {
+    return voterController.createVoter(req, res)
   })
 
   return router

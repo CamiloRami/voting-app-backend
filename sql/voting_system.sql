@@ -20,7 +20,7 @@ CREATE TABLE voters (
     name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     date_of_birth DATE NOT NULL,
-    direction VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL,
     sex ENUM('M', 'F') NOT NULL,
     is_candidate TINYINT NOT NULL DEFAULT 0,
@@ -47,7 +47,7 @@ INSERT INTO admins (name, last_name, email, password) VALUES
 -- password: admin123
 
 -- VOTERS (8)
-INSERT INTO voters (document, name, last_name, date_of_birth, direction, phone, sex, is_candidate) VALUES
+INSERT INTO voters (document, name, last_name, date_of_birth, address, phone, sex, is_candidate) VALUES
 ('1234567', 'Juan', 'Pérez', '1990-01-15', 'Calle 1', '555-1234', 'M', 0),
 ('2345678', 'María', 'Gómez', '1985-02-20', 'Calle 2', '555-5678', 'F', 0),
 ('3456789', 'Carlos', 'López', '1992-03-30', 'Calle 3', '555-8765', 'M', 0),
@@ -58,7 +58,7 @@ INSERT INTO voters (document, name, last_name, date_of_birth, direction, phone, 
 ('8901234', 'Lucía', 'Ramírez', '1991-08-25', 'Calle 8', '555-4680','F' , 0);
 
 -- CANDIDATES (2)
-INSERT INTO voters (document, name, last_name, date_of_birth, direction, phone, sex, is_candidate) VALUES
+INSERT INTO voters (document, name, last_name, date_of_birth, address, phone, sex, is_candidate) VALUES
 ('1111111', 'Jon', 'Snow', '1980-09-30', 'The Wall', '555-1111', 'M', 1),
 ('2222222', 'Laura', 'Fernández', '1986-10-15', 'Calle 10', '555-2222', 'F', 1);
 
@@ -98,7 +98,7 @@ SELECT
     vr.name as voter_name,
     vr.last_name as voter_last_name,
     vr.date_of_birth as voter_birth,
-    vr.direction as voter_address,
+    vr.address as voter_address,
     vr.phone as voter_phone,
     vr.sex as voter_sex,
     -- Candidate details

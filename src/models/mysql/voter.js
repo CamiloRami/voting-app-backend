@@ -32,6 +32,19 @@ class VoterModel {
       await connection.end()
     }
   }
+
+  static async createVoter ({ document, name, lastName, dateOfBirth, address, phone, sex, isCandidate }) {
+    const connection = await createConnection()
+    try {
+      const [result] = await connection.query('INSERT INTO voters (document, name, last_name, date_of_birth, address, phone, sex, is_candidate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [document, name, lastName, dateOfBirth, address, phone, sex, isCandidate])
+      return result.insertId
+    } catch (error) {
+      console.error('Error creating voter:', error)
+      throw error
+    } finally {
+      await connection.end()
+    }
+  }
 }
 
 module.exports = VoterModel
