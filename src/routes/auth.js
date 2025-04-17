@@ -18,6 +18,10 @@ const createAuthRouter = ({ authService }) => {
     return authController.changePassword(req, res)
   })
 
+  router.get('/check-auth', authMiddleware, (req, res) => {
+    res.status(200).json({ message: 'Authenticated' })
+  })
+
   return router
 }
 

@@ -15,6 +15,7 @@ const app = express()
 const PORT = port
 
 const corsOptions = {
+  credentials: true,
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
       callback(null, true)

@@ -1,11 +1,12 @@
 const express = require('express')
 const VoteController = require('../controllers/vote')
+const authMiddleware = require('../middlewares/auth')
 
 function createVoteRouter ({ voteModel }) {
   const router = express.Router()
   const voteController = new VoteController({ voteModel })
 
-  router.get('/', (req, res) => {
+  router.get('/', authMiddleware, (req, res) => {
     return voteController.getVotes(req, res)
   })
 
