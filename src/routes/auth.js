@@ -10,7 +10,7 @@ const createAuthRouter = ({ authService }) => {
     return authController.login(req, res)
   })
 
-  router.post('/logout', async (req, res) => {
+  router.post('/logout', authMiddleware, async (req, res) => {
     return authController.logout(req, res)
   })
 
