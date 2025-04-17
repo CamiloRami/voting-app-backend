@@ -35,5 +35,18 @@ class VoteController {
       return res.status(500).json({ error: 'Internal server error' })
     }
   }
+
+  async getDetailedVotes (req, res) {
+    try {
+      const votes = await this.voteModel.getDetailedVotes()
+      if (!votes) {
+        return res.status(404).json({ error: 'No detailed votes found' })
+      }
+      return res.json(votes)
+    } catch (err) {
+      console.error('Error fetching detailed votes:', err)
+      return res.status(500).json({ error: 'Internal server error' })
+    }
+  }
 }
 module.exports = VoteController

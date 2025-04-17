@@ -14,6 +14,10 @@ function createVoteRouter ({ voteModel }) {
     return voteController.createVote(req, res)
   })
 
+  router.get('/detailed', authMiddleware, (req, res) => {
+    return voteController.getDetailedVotes(req, res)
+  })
+
   return router
 }
 module.exports = createVoteRouter

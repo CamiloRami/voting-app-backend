@@ -50,5 +50,21 @@ class VoteModel {
       await connection.end()
     }
   }
+
+  static async getDetailedVotes () {
+    const connection = await createConnection()
+    try {
+      const [votes] = await connection.query('SELECT * FROM detailed_votes')
+      if (votes.length === 0) {
+        return null
+      }
+      return votes
+    } catch (error) {
+      console.error('Error fetching detailed votes:', error)
+      throw error
+    } finally {
+      await connection.end()
+    }
+  }
 }
 module.exports = VoteModel
