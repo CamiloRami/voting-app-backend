@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "test-db": "node src/test-db.js",
+    "test-db": "node src/tests/test-db.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
