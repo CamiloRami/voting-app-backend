@@ -27,11 +27,14 @@ class VoterController {
 
   async getVoters (req, res) {
     try {
-      const voters = await this.voterModel.getVoters()
-      if (!voters) {
+      const offset = parseInt(req.query.offset) || 0
+      const limit = parseInt(req.query.limit) || 10
+
+      const result = await this.voterModel.getVoters({ offset, limit })
+      if (!result.voters) {
         return res.status(404).json({ error: 'No voters found' })
       }
-      return res.json(voters)
+      return res.json(result)
     } catch (err) {
       console.error('Error fetching voters:', err)
       return res.status(500).json({ error: 'Internal server error' })

@@ -7,11 +7,14 @@ class VoteController {
 
   async getVotes (req, res) {
     try {
-      const votes = await this.voteModel.getVotes()
-      if (!votes) {
+      const offset = parseInt(req.query.offset) || 0
+      const limit = parseInt(req.query.limit) || 10
+
+      const result = await this.voteModel.getVotes({ offset, limit })
+      if (!result.votes) {
         return res.status(404).json({ error: 'No votes found' })
       }
-      return res.json(votes)
+      return res.json(result)
     } catch (err) {
       console.error('Error fetching votes:', err)
       return res.status(500).json({ error: 'Internal server error' })
@@ -38,11 +41,14 @@ class VoteController {
 
   async getDetailedVotes (req, res) {
     try {
-      const votes = await this.voteModel.getDetailedVotes()
-      if (!votes) {
+      const offset = parseInt(req.query.offset) || 0
+      const limit = parseInt(req.query.limit) || 10
+
+      const result = await this.voteModel.getDetailedVotes({ offset, limit })
+      if (!result.votes) {
         return res.status(404).json({ error: 'No detailed votes found' })
       }
-      return res.json(votes)
+      return res.json(result)
     } catch (err) {
       console.error('Error fetching detailed votes:', err)
       return res.status(500).json({ error: 'Internal server error' })

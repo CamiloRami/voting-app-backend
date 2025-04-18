@@ -1,14 +1,19 @@
 const createConnection = require('../../libs/db')
 
 class VoteModel {
-  static async getVotes () {
+  static async getVotes ({ offset = 0, limit = 10 } = {}) {
     const connection = await createConnection()
     try {
-      const [votes] = await connection.query('SELECT * FROM votes')
-      if (votes.length === 0) {
-        return null
+      const [[{ total }]] = await connection.query('SELECT COUNT(*) as total FROM votes')
+      const [votes] = await connection.query('SELECT * FROM votes LIMIT ? OFFSET ?', [limit, offset])
+      return {
+        votes: votes.length === 0 ? null : votes,
+        pagination: {
+          total,
+          offset,
+          limit
+        }
       }
-      return votes
     } catch (error) {
       console.error('Error fetching votes:', error)
       throw error
@@ -51,14 +56,19 @@ class VoteModel {
     }
   }
 
-  static async getDetailedVotes () {
+  static async getDetailedVotes ({ offset = 0, limit = 10 } = {}) {
     const connection = await createConnection()
     try {
-      const [votes] = await connection.query('SELECT * FROM detailed_votes')
-      if (votes.length === 0) {
-        return null
+      const [[{ total }]] = await connection.query('SELECT COUNT(*) as total FROM detailed_votes')
+      const [votes] = await connection.query('SELECT * FROM detailed_votes LIMIT ? OFFSET ?', [limit, offset])
+      return {
+        votes: votes.length === 0 ? null : votes,
+        pagination: {
+          total,
+          offset,
+          limit
+        }
       }
-      return votes
     } catch (error) {
       console.error('Error fetching detailed votes:', error)
       throw error

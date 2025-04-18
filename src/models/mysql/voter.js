@@ -17,14 +17,19 @@ class VoterModel {
     }
   }
 
-  static async getVoters () {
+  static async getVoters ({ offset = 0, limit = 10 } = {}) {
     const connection = await createConnection()
     try {
-      const [voters] = await connection.query('SELECT * FROM voters')
-      if (voters.length === 0) {
-        return null
+      const [[{ total }]] = await connection.query('SELECT COUNT(*) as total FROM voters')
+      const [voters] = await connection.query('SELECT * FROM voters LIMIT ? OFFSET ?', [limit, offset])
+      return {
+        voters: voters.length === 0 ? null : voters,
+        pagination: {
+          total,
+          offset,
+          limit
+        }
       }
-      return voters
     } catch (error) {
       console.error('Error fetching voters:', error)
       throw error
