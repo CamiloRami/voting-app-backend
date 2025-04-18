@@ -22,7 +22,11 @@ class AuthController {
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'Strict'
       })
-      res.status(200).json({ message: 'Authentication successful' }, token)
+      res.status(200).json({
+        name: admin.name,
+        last_name: admin.last_name,
+        email: admin.email
+      }, token)
     } catch (error) {
       res.status(401).json({ error: error.message })
     }
