@@ -1,5 +1,57 @@
 # Voting System API Documentation
 
+## Setup and Installation
+
+### Prerequisites
+- Node.js (v20 or higher)
+- Docker and Docker Compose
+- Package manager: pnpm (recommended) or npm
+
+### Environment Variables
+Create a `.env` file in the root directory with the following variables:
+```
+PORT=3000
+DB_HOST=localhost
+DB_PORT=3306
+MYSQL_DATABASE=voting_system
+MYSQL_USER=your_user
+MYSQL_PASSWORD=your_password
+MYSQL_ROOT_PASSWORD=your_root_password
+JWT_SECRET=your_jwt_secret
+TOKEN_EXPIRATION=1h
+```
+
+### Database Setup
+1. Start the database and PHPMyAdmin:
+```bash
+docker-compose up -d
+```
+This will:
+- Start a MySQL 8.0 database on port 3306
+- Start PHPMyAdmin on port 8080 (accessible at http://localhost:8080)
+- Initialize the database with the schema from `/sql/voting_system.sql`
+
+### Application Setup
+1. Install dependencies:
+```bash
+pnpm install
+```
+
+2. Start the development server:
+```bash
+pnpm dev
+```
+
+The API will be available at http://localhost:3000 (or the port specified in your .env file)
+
+### Running in Production
+For production deployment:
+```bash
+pnpm start
+```
+
+## API Documentation
+
 This is the backend API for the voting system. All endpoints are prefixed with `/api/v1`.
 
 ## Authentication Endpoints
