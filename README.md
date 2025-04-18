@@ -2,6 +2,10 @@
 
 ## Setup and Installation
 
+### Repository
+- Repository URL: https://github.com/CamiloRami/voting-app-backend
+- Clone with SSH: `git clone git@github.com:CamiloRami/voting-app-backend.git`
+
 ### Prerequisites
 - Node.js (v20 or higher)
 - Docker and Docker Compose
