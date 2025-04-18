@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const config = require('../config')
-// const bcrypt = require('bcrypt')
 
 class AuthController {
   constructor ({ authService }) {
@@ -23,11 +22,7 @@ class AuthController {
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'Strict'
       })
-      res.status(200).send({
-        name: admin.name,
-        last_name: admin.last_name,
-        email: admin.email
-      }, token)
+      res.status(200).json({ message: 'Authentication successful' }, token)
     } catch (error) {
       res.status(401).json({ error: error.message })
     }
